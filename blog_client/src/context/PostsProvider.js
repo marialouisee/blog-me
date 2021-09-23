@@ -23,7 +23,7 @@ function PostsProvider({ children }) {
   }, []);
 
 
-  console.log(posts);
+  // console.log(posts);
 
   const addPost = (postNew) => {
     setPosts([...posts, postNew]);

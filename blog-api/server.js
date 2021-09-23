@@ -6,7 +6,6 @@ import commentsRouter from './routes/commentsRouter.js';
 import usersRouter from './routes/usersRouter.js';
 import config from './config/config.js'
 
-
 const app = express();
 
 app.use(express.json());
@@ -20,7 +19,7 @@ app.get('/', (req, res) => {
 // ROUTERS
 app.use('/posts', postsRouter)
 app.use('/users', usersRouter)
-app.use('/comments', commentsRouter)
+app.use('/comments', commentsRouter) 
 
 
 // LISTEN

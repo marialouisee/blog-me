@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import { Switch, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
@@ -6,12 +7,13 @@ import PostView from "./pages/PostView";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Write from "./pages/Write";
+import { UserContext } from "./context/UserProvider";
 import './style/main.scss'
 
 function App() {
 
-  const user = true // this will be replaced by user data from the server
-
+  const { user } = useContext(UserContext);
+  
   return (
     <div className="App">
       <Navbar />
@@ -20,7 +22,7 @@ function App() {
           <Register />
         </Route>
         <Route path="/login">
-          <Login />
+          {user? null : <Login />}
         </Route>
         <Route exact path="/posts/:id">
           <PostView />
@@ -29,7 +31,7 @@ function App() {
           <PostList />
         </Route>
         <Route path="/write">
-          user? <Write /> : <Login/>
+          {user? <Write /> : <Login/> }
         </Route>
         <Route exact path="/">
           <Home />

@@ -3,14 +3,26 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    font-size: 20px;
     a {
         padding: 0 20px;
-        color: black;
+        color: #2d5244;
         text-decoration: none;
-  
+        text-shadow: 0px 0px 5px #ffffff;
+        &:hover {
+            animation: smoke 4s ease-in-out infinite;
+
+            @keyframes smoke {
+                0% { text-shadow: 0px 0px 5px #ffffff}
+                50% { text-shadow: 0px 0px 5px #2d5244}
+                100% { text-shadow: 0px 0px 5px #ffffff}
+            }
+        }
     }
+
     .active {
-        color: #ffc107;
+        color: #2d5244;
+        text-shadow: #a36543 0 0 20px;
     }
     
 }
