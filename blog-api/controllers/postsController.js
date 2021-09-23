@@ -3,7 +3,7 @@ import Post from "../models/Post.js";
 
 export const getPosts = async (req, res, next) => {
   try {
-    const posts = await Post.find();
+    const posts = await Post.find().populate({ path: "authorId", select: "username" }); //just populate username for frontend
     res.json(posts);
   } catch (error) {
     next(error);
