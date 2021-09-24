@@ -35,7 +35,7 @@ const Write = () => {
         },
       });
     } else {
-        
+
         // todo handle error
 
         toast( 'something went wrong', {
@@ -65,7 +65,7 @@ const Write = () => {
 
         <textarea
           className="write-text"
-          placeholder="Tell us ..."
+          placeholder="Your blog content"
           {...register("text", {
             required: true,
             minLength: {
