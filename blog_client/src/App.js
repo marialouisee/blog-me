@@ -8,12 +8,14 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Write from "./pages/Write";
 import { UserContext } from "./context/UserProvider";
-import './style/main.scss'
+import './style/main.scss';
+import { ToastContainer } from 'react-toastify';
+
 
 function App() {
 
   const { user } = useContext(UserContext);
-  
+
   return (
     <div className="App">
       <Navbar />
@@ -30,13 +32,14 @@ function App() {
         <Route exact path="/posts">
           <PostList />
         </Route>
-        <Route path="/write">
+        <Route path="/users/:id/write">
           {user? <Write /> : <Login/> }
         </Route>
         <Route exact path="/">
           <Home />
         </Route>
       </Switch>
+      <ToastContainer />
     </div>
   );
 }

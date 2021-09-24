@@ -1,12 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Birthstone+Bounce&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 
 .home-bg {
-    background-image: url('../../images/marble.jpeg');
-    height: calc(100vh - 80px);
-    font-size: 100px;
-    font-family: 'Birthstone Bounce', cursive;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: rgba(117, 107, 92, 0.842);
+    flex-direction: column ;
+    background-image: url('../../images/concrete.jpeg');
+    height: calc(100vh - 80px);
+    font-size: 100px;
+    font-family: 'Permanent Marker', cursive, Arial, Helvetica, sans-serif;
+   
+    color: rgba(27, 95, 86, 0.842);
 }

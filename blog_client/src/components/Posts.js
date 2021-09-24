@@ -1,5 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { format } from 'date-fns'
+
 
 const Posts = ({ post, index = 0 }) => {
 
@@ -8,6 +10,7 @@ const Posts = ({ post, index = 0 }) => {
     pathname: `/posts/${post._id}`,
     state: post 
   } 
+
   return (
     <div key={post._id} className="post-card">
       <div className="post-image">
@@ -20,7 +23,7 @@ const Posts = ({ post, index = 0 }) => {
         <Link to={postLinkData}>{post.title}</Link>
       </div>
       <div className="post-author">
-        {post.createdAt.substring(0, 10)} by {post.author}
+        {post.createdAt.substring(0, 10)  } by {post.authorId.username}
       </div>
       <div className="post-text">{post.text.substring(0, 70)}</div>
       <div className="post-foloowup">

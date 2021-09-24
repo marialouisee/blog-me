@@ -20,31 +20,31 @@ function PostsProvider({ children }) {
     } catch (error) {
       console.log(error.message);
     }
-  }, []);
+  }, [posts]);
 
 
   // console.log(posts);
 
-  const addPost = (postNew) => {
-    setPosts([...posts, postNew]);
-  };
-  const updatePost = (postUpdated) => {
-    setPosts(
-      posts.map((post) =>
-        post._id === postUpdated._id ? { ...postUpdated } : post
-      )
-    );
-  };
-  const deletePost = (postToDelete) => {
-    setPosts(posts.filter((post) => post._id !== postToDelete._id));
-  };
+  // const addPost = (postNew) => {
+  //   setPosts([...posts, postNew]);
+  // };
+  // const updatePost = (postUpdated) => {
+  //   setPosts(
+  //     posts.map((post) =>
+  //       post._id === postUpdated._id ? { ...postUpdated } : post
+  //     )
+  //   );
+  // };
+  // const deletePost = (postToDelete) => {
+  //   setPosts(posts.filter((post) => post._id !== postToDelete._id));
+  // };
 
   const sharedData = {
     posts,
     setPosts,
-    addPost,
-    updatePost,
-    deletePost
+    // addPost,
+    // updatePost,
+    // deletePost
   };
 
   return (
