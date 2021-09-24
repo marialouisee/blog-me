@@ -9,7 +9,8 @@ import Login from "./pages/Login";
 import Write from "./pages/Write";
 import { UserContext } from "./context/UserProvider";
 import './style/main.scss';
-import { ToastContainer } from 'react-toastify';
+// import { ToastContainer } from 'react-toastify';
+import  { Toaster } from 'react-hot-toast';
 
 
 function App() {
@@ -39,7 +40,7 @@ function App() {
           <Home />
         </Route>
       </Switch>
-      <ToastContainer />
+      <Toaster />
     </div>
   );
 }
