@@ -11,7 +11,7 @@ import {
 } from '../controllers/usersController.js';
 
 import {
-  getPosts,
+  getUserPosts,
   createPost,
   deletePost,
   updatePost,
@@ -31,7 +31,7 @@ router.route("/").get(getUsers)
 router.route("/login").post(loginUser);
 router.route('/:id').get(getUser).put(updateUser).delete(deleteUser);
 
-router.route('/:id/posts').get(getPosts).post(createPost);
+router.route('/:id/posts').get(getUserPosts).post(createPost);
 router.route('/:id/posts/:postId').delete(deletePost).put(updatePost).get(getPost);
 
 export default router;

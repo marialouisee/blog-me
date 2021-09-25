@@ -1,4 +1,5 @@
 import Post from "../models/Post.js";
+import createError from "http-errors";
 // import Comment from "../models/Comment.js";
 
 export const getPosts = async (req, res, next) => {
@@ -9,6 +10,18 @@ export const getPosts = async (req, res, next) => {
     next(error);
   }
 };
+
+// user/:id/posts
+export const getUserPosts = async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const posts = await Post.find({ authorId: id });
+    res.json(posts);
+    
+  } catch (error) {
+    next(error);
+  }
+}
 
 export const getPost = async (req, res, next) => {
   const { id } = req.params;

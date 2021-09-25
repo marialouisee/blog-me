@@ -7,13 +7,17 @@ import PostView from "./pages/PostView";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Write from "./pages/Write";
+import User from "./pages/User";
 import { UserContext } from "./context/UserProvider";
-import './style/main.scss'
+import './style/main.scss';
+// import { ToastContainer } from 'react-toastify';
+import  { Toaster } from 'react-hot-toast';
+
 
 function App() {
 
   const { user } = useContext(UserContext);
-  
+
   return (
     <div className="App">
       <Navbar />
@@ -30,15 +34,18 @@ function App() {
         <Route exact path="/posts">
           <PostList />
         </Route>
-        <Route path="/write">
+        <Route path="/users/:id/write">
           {user? <Write /> : <Login/> }
+        </Route>
+        <Route path="/users/:id">
+          {user? <User /> : null}
         </Route>
         <Route exact path="/">
           <Home />
         </Route>
       </Switch>
+      <Toaster />
     </div>
   );
 }
-
 export default App;

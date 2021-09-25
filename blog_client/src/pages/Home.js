@@ -1,10 +1,10 @@
 import React from 'react'
-import bg from '../images/marble.jpeg'
 
 const Home = () => {
   return (
     <div className='home-bg'>
       <h1>Welcome</h1>
+      <h6>to Blog-Me-If-You-Can</h6>
     </div>
   )
 }
