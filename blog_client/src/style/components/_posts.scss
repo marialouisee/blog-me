@@ -1,0 +1,29 @@
+.posts-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    img {
+        width: 100%;
+    }
+}
+
+.post-card {
+    width: 40vw;
+    margin: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.post-view {
+    margin: 40px;
+    padding: 20px;
+    background-color: rgb(230, 241, 245);
+    .stats{
+        img {
+            width: 15px;
+            height: 15px;
+        }
+    }
+}
+   

@@ -32,12 +32,21 @@ const seed = async () => {
         title: faker.lorem.words(),
         authorId: users[0],
         text: "Post 1 " + faker.lorem.sentences(5),
+        imageUrl: 'https://cdn.pixabay.com/photo/2021/08/24/15/38/sand-6570980_1280.jpg',
         stats: { likes: faker.datatype.number(50), dislikes: faker.datatype.number(50) }
       },
       {
         title: faker.lorem.words(),
         authorId: users[1],
         text: "Post 2 " + faker.lorem.sentences(5),
+        imageUrl: 'https://cdn.pixabay.com/photo/2021/08/17/14/48/sea-6553205_1280.jpg',
+        stats: { likes: faker.datatype.number(50), dislikes: faker.datatype.number(50) }
+      },
+      {
+        title: faker.lorem.words(),
+        authorId: users[1],
+        text: "Post 3 " + faker.lorem.sentences(5),
+        imageUrl: 'https://cdn.pixabay.com/photo/2021/08/24/15/38/sand-6570980_1280.jpg',
         stats: { likes: faker.datatype.number(50), dislikes: faker.datatype.number(50) }
       },
     ]);

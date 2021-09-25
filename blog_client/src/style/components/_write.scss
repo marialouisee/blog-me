@@ -8,7 +8,10 @@
         font-family: 'Karla', sans-serif;
         width: 60%;
         margin: 20px 0;
-        padding: 20px
+        padding: 20px;
+        border: 1px solid $green-prim-opac;
+        border-radius: 5px;
+
     };
     .write-text{
         font-family: 'Karla', sans-serif;
@@ -18,5 +21,17 @@
         padding: 20px;
         display: flex;
         justify-content: flex-start;
+        border-radius: 5px;
+
+    };
+    .write-submit{
+        font-family: 'Karla', sans-serif;
+        padding: 10px 15px;
+        background-color: $green-prim-opac;
+        color: white;
+        font-weight: bold;
+        border: none;
+        border-radius: 5px;
+
     }
 }

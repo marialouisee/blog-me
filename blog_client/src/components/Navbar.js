@@ -18,7 +18,7 @@ const {user} = useContext(UserContext)
             </div>
 
             <div className='navbar-user'>
-                {user? <NavLink activeClassName='active' to="/user/:id">{user.username}</NavLink> : <> <NavLink activeClassName='active' to="/login">Login</NavLink> 
+                {user? <NavLink activeClassName='active' to="/users/:id">{user.username}</NavLink> : <> <NavLink activeClassName='active' to="/login">Login</NavLink> 
                 <NavLink activeClassName='active' to="/register">Register</NavLink></> }
             </div>
         </div>

@@ -4,7 +4,7 @@ const Home = () => {
   return (
     <div className='home-bg'>
       <h1>Welcome</h1>
-      <h3>to your blog</h3>
+      <h6>to Blog-Me-If-You-Can</h6>
     </div>
   )
 }

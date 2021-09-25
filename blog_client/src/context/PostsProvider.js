@@ -20,10 +20,10 @@ function PostsProvider({ children }) {
     } catch (error) {
       console.log(error.message);
     }
-  }, [posts]);
+  }, []);
 
 
-  // console.log(posts);
+ console.log(posts);
 
   // const addPost = (postNew) => {
   //   setPosts([...posts, postNew]);

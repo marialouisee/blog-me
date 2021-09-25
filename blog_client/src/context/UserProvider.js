@@ -2,12 +2,9 @@ import { createContext } from "react";
 
 export const UserContext = createContext();
 
-
 function UserProvider({ children }) {
-    
     // const user = false
-    const user = {username: "Thora_Spencer73", email: "Mavis_Torp30@gmail.com", _id: "614d937e2a269f6d55862246"}
-    // console.log(user)
+    const user = {username: "Rosa_Kunze41", email: "Therese40@yahoo.com", _id: "614ed71e9594700a85ab1a9c"}
 
     return (
       <UserContext.Provider value={{user}}>

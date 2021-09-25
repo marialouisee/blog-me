@@ -10,6 +10,7 @@ import toast from 'react-hot-toast';
 const Write = () => {
   const { user } = useContext(UserContext);
   const { posts, setPosts } = useContext(PostsContext);
+  // console.log(user)
 
   const {
     register,
@@ -19,13 +20,11 @@ const Write = () => {
 
   const onSubmit = async (data) => {
     const helperData = { ...data, authorId: user._id };
-    console.log(helperData);
     const res = await createPost(helperData);
-    console.log(res)
 
     if (!res.error) {
       setPosts([...posts, helperData]);
-      //   history.push('/shop');
+      //   history.push('/...');
       toast("Post created successfully!", {
         duration: 4000,
         position: "top-right",
@@ -62,7 +61,7 @@ const Write = () => {
           })}
         />
         {errors.title?.type === "required" && "Title is required"}
-
+        
         <textarea
           className="write-text"
           placeholder="Your blog content"
@@ -80,7 +79,18 @@ const Write = () => {
         />
         {errors.text && "Text is required"}
 
-        <input type="submit" />
+        <input
+          className="write-title"
+          placeholder="Image URL"
+          {...register("imageUrl", {
+            required: true
+          })}
+        />
+        {errors.title?.type === "required" && "Title is required"}
+
+        <input className='write-submit' type="submit" />
+
+
       </form>
     </div>
   );

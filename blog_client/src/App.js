@@ -7,6 +7,7 @@ import PostView from "./pages/PostView";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Write from "./pages/Write";
+import User from "./pages/User";
 import { UserContext } from "./context/UserProvider";
 import './style/main.scss';
 // import { ToastContainer } from 'react-toastify';
@@ -36,6 +37,9 @@ function App() {
         <Route path="/users/:id/write">
           {user? <Write /> : <Login/> }
         </Route>
+        <Route path="/users/:id">
+          {user? <User /> : null}
+        </Route>
         <Route exact path="/">
           <Home />
         </Route>
@@ -44,5 +48,4 @@ function App() {
     </div>
   );
 }
-
 export default App;
