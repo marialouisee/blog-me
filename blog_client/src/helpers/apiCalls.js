@@ -3,15 +3,9 @@ const serverUrl = 'http://localhost:5000';
 
 export const createPost = async (data) => {
   try {
-    const res = await axios.post(`${serverUrl}/api/posts`, data);
-    // const res = await (
-    //   await fetch(`${serverUrl}/users/${data.userId}/posts`, {
-    //     method: 'POST',
-    //     headers: { 'Content-Type': 'application/json' },
-    //     body: JSON.stringify(data),
-    //   })
-    // ).json();
+    const res = await axios.post(`${serverUrl}/posts`, data);
     return res;
+
   } catch (error) {
     return error;
   }

@@ -40,6 +40,13 @@ const UserSchema = new Schema(
   {
     versionKey: false,
     timestamps: true, // will create createdAt and updatedAt fields
+  }, {
+    toJSON: { 
+      transform: (doc, ret) => {
+        delete ret.password;
+        return ret;
+      }
+    },
   }
 );
 
