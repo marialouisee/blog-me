@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 const { Schema, model } = mongoose;
+import jwt from 'jsonwebtoken';
 
 const UserSchema = new Schema(
   {
@@ -49,6 +50,20 @@ const UserSchema = new Schema(
     },
   }
 );
+
+
+
+// is user?
+UserSchema.statics.findByToken =  function (token) {
+  const User = this;
+  try {
+    let decoded = jwt.verify(token, config.secretKey); // will return the payload : { _id: user._id }
+    let user = User.findOne({ _id: decoded._id });
+    return user;
+  } catch (error) {
+    return;
+  }
+}
 
 const User = model("User", UserSchema);
 

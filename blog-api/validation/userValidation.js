@@ -15,17 +15,17 @@ export const userValidationRules = () => {
       .normalizeEmail()
       .escape(),
     body("password")
-      .isStrongPassword({
-        minLength: 10,
-        minLowercase: 1,
-        minUppercase: 1,
-        minNumbers: 1,
-        minSymbols: 1,
-        returnScore: false
-      })
-      .withMessage(
-        "Password must contain at least one lowercase letter, one uppercase letter, one number, and one symbol !@#^$%&*"
-      )
+      // .isStrongPassword({
+      //   minLength: 10,
+      //   minLowercase: 1,
+      //   minUppercase: 1,
+      //   minNumbers: 1,
+      //   minSymbols: 1,
+      //   returnScore: false
+      // })
+      // .withMessage(
+      //   "Password must contain at least one lowercase letter, one uppercase letter, one number, and one symbol !@#^$%&*"
+      // )
       .escape()
   ];
 };

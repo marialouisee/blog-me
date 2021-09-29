@@ -22,15 +22,16 @@ import {
   userValidationErrorHandling
 } from '../validation/userValidation.js'
 
-router.route("/").get(getUsers)
-                 .post(userValidationRules(), // Validate user input
-                       userValidationErrorHandling, // this is a middleware
-                       addUser);
-
+router.route("/").get(getUsers);
+router.route("/register").post(
+  userValidationRules(), // Validate user input
+  userValidationErrorHandling, // this is a middleware
+  addUser
+);
 router.route("/login").post(loginUser);
-router.route('/:id').get(getUser).put(updateUser).delete(deleteUser);
+router.route("/:id").get(getUser).put(updateUser).delete(deleteUser);
 
-router.route('/:id/posts').get(getSingleUserPosts).post(createPost);
-router.route('/:id/posts/:postId').delete(deletePost).put(updatePost);
+router.route("/:id/posts").get(getSingleUserPosts).post(createPost);
+router.route("/:id/posts/:postId").delete(deletePost).put(updatePost);
 
 export default router;

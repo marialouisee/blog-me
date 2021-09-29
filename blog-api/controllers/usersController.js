@@ -1,5 +1,8 @@
 import User from '../models/User.js';
 import createError from 'http-errors';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import config from '../config/config.js'
 
 export const getUsers = async (req, res, next) => {
   try {
@@ -11,9 +14,12 @@ export const getUsers = async (req, res, next) => {
 };
 
 export const addUser = async (req, res, next) => {
-  const body = req.body;
+  let body = req.body;
   try {
-    const user = await User.create(body);
+    const user = new User(body)
+    user.password = bcrypt.hashSync(user.password, 10);
+    await user.save();
+    user.password = undefined;
     res.send(user);
   } catch (err) {
     next(err);
@@ -54,12 +60,26 @@ export const deleteUser = async (req, res, next) => {
 };
 
 export const loginUser = async (req, res, next) => {
-  const { email, password } = req.body;
+  const { username, password } = req.body;
   try {
-    const user = await User.findOne({ email }).populate('cart.record');
+    const user = await User.findOne({ username }).populate("cart.record");
     if (!user) throw new createError(404, `Email not valid`);
-    if (user.password !== password) throw new createHttpError(404, `Password is not valid`);
-    res.send(user);
+
+    const isPasswordValid = bcrypt.compareSync(password, user.password);
+    if (!isPasswordValid) throw new createError(401, `Password not valid`);
+
+    user.password = undefined;
+    
+    const token = jwt.sign({ id: user._id }, config.secretKey, { expiresIn: '1d' });
+
+    const cookieOptions = {
+      httpOnly: true,
+      expires: new Date(Date.now() + 172800000),
+      sameSite: config.env === "production" ? "none" : "lax",
+      secure: config.env === "production" ? true : false,
+    };
+
+    res.cookie("token", token, cookieOptions).send(user);
   } catch (err) {
     next(err);
   }
