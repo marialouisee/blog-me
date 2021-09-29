@@ -90,8 +90,8 @@ const seed = async () => {
 
     // CLOSE CONNECTION TO DATABASE AND FINISH SCRIPT
     await mongoose.connection.close();
-  } catch (error) {
-    console.log(error.message, error);
+  } catch (err) {
+    console.log(err);
   }
 };
 
