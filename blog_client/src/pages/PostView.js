@@ -29,7 +29,7 @@ const PostView = ({ location }) => {
     <div className="post-view">
       <div className="post-details">
         <h2>{post.title}</h2>
-        <div className="post-author">By: {post.author}</div>
+        <div className="post-author">By: {post.authorId.username}</div>
         <div className="post-date">{post.createdAt.substring(0, 10)}</div>
         <div className="post-text">{post.text}</div>
       </div>

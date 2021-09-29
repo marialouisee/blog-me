@@ -2,6 +2,9 @@ import Post from "../models/Post.js";
 import createError from "http-errors";
 // import Comment from "../models/Comment.js";
 
+//# POST ROUTE
+
+// get all posts
 export const getPosts = async (req, res, next) => {
   try {
     const posts = await Post.find().populate({ path: "authorId", select: "username" }); //just populate username for frontend
@@ -11,8 +14,13 @@ export const getPosts = async (req, res, next) => {
   }
 };
 
+
+
+// #############################################################################
+// USERS ROUTES
+
 // user/:id/posts
-export const getUserPosts = async (req, res, next) => {
+export const getSingleUserPosts = async (req, res, next) => {
   const { id } = req.params;
   try {
     const posts = await Post.find({ authorId: id });
@@ -23,15 +31,6 @@ export const getUserPosts = async (req, res, next) => {
   }
 }
 
-export const getPost = async (req, res, next) => {
-  const { id } = req.params;
-  try {
-    const post = await Post.findById(id);
-    res.json(post);
-  } catch (error) {
-    next(error);
-  }
-};
 
 export const createPost = async (req, res, next) => {
   try {

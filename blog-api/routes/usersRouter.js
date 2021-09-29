@@ -2,20 +2,19 @@ import express from 'express';
 const router = express.Router();
 
 import {
-  getUser,
-  getUsers,
-  addUser,
-  updateUser,
-  deleteUser,
+  getUser, // protect, user
+  getUsers, // protect, admin
+  addUser, 
+  updateUser, // protect, user/admin
+  deleteUser, // protect, user/admin
   loginUser
 } from '../controllers/usersController.js';
 
 import {
-  getUserPosts,
-  createPost,
-  deletePost,
-  updatePost,
-  getPost,
+  getSingleUserPosts,
+  createPost, // protect, user
+  deletePost, // protect, user
+  updatePost, // protect, user
 } from '../controllers/postsController.js';
 
 import {
@@ -31,7 +30,7 @@ router.route("/").get(getUsers)
 router.route("/login").post(loginUser);
 router.route('/:id').get(getUser).put(updateUser).delete(deleteUser);
 
-router.route('/:id/posts').get(getUserPosts).post(createPost);
-router.route('/:id/posts/:postId').delete(deletePost).put(updatePost).get(getPost);
+router.route('/:id/posts').get(getSingleUserPosts).post(createPost);
+router.route('/:id/posts/:postId').delete(deletePost).put(updatePost);
 
 export default router;
