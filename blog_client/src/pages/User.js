@@ -3,6 +3,7 @@ import UserInfo from "../components/UserInfo";
 import UserPosts from "../components/UserPosts";
 import axios from "axios";
 import { UserContext } from "../context/UserProvider";
+import { getSingleUserPosts } from "../helpers/apiCalls"
 
 const User = () => {
   const [userPots, setUserPosts] = useState([]);
@@ -12,9 +13,7 @@ const User = () => {
   useEffect(() => {
     try {
       const fetchPosts = async () => {
-        const res = await axios.get(
-          `http://localhost:5000/users/${user._id}/posts`
-        );
+        const res = await getSingleUserPosts(user._id)
         setUserPosts(res.data);
       };
       fetchPosts();

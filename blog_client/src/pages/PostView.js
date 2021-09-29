@@ -2,12 +2,11 @@ import React , { useState, useEffect } from 'react'
 import IconLike from '../images/thumbs-up.svg'
 import IconDislike from '../images/thumbs-down.svg'
 import Comment from '../components/Comment';
+import { getComments } from "../helpers/apiCalls";
 
 const PostView = ({ location }) => {
 
-  console.log('post view render')
   const [comments, setComments] = useState([]);
-  console.log({location})
 
   // renaiming the location.state to post
   const { state: post } = location;
@@ -15,15 +14,12 @@ const PostView = ({ location }) => {
   // get comments from API
   useEffect(() => {
     const fetchComments = async () => {
-      const response = await fetch(
-        `http://localhost:5000/posts/${post._id}/comments`
-      );
-      const commentsAPI = await response.json();
-      setComments(commentsAPI);
+      const res = await getComments(post._id)
+      console.log(res)
+      setComments(res.data);
     };
     fetchComments();
   });
-
 
   return (
     <div className="post-view">
@@ -45,11 +41,11 @@ const PostView = ({ location }) => {
           </span>
         </div>
       )}
-      <div className="comments-count">{comments.length} Comments</div>
+      {/* <div className="comments-count">{comments.length} Comments</div> */}
       <div className="comments">
-        {comments.map((comment, i) => (
+        {/* {comments.map((comment, i) => (
           <Comment key={comment._id} comment={comment} index={i} />
-        ))}
+        ))} */}
       </div>
     </div>
   );

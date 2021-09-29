@@ -5,11 +5,16 @@ import postsRouter from './routes/postsRouter.js';
 import commentsRouter from './routes/commentsRouter.js';
 import usersRouter from './routes/usersRouter.js';
 import config from './config/config.js'
+import cookieParser from 'cookie-parser';
+
 
 const app = express();
 
 app.use(express.json());
-app.use(cors({origin: config.frontendOrigin})); 
+app.use(
+  cors({ origin: config.frontendOrigin, credentials: true })
+);
+app.use(cookieParser());
 
 // HOME ROUTE
 app.get('/', (req, res) => {

@@ -1,68 +1,61 @@
 import axios from "axios";
-const serverUrl = 'http://localhost:5000';
 
-export const createPost = async (data) => {
+axios.defaults.baseURL = "http://localhost:5000";
+axios.defaults.withCredentials = true;
+
+export const getPosts = async () => {
   try {
-    const res = await axios.post(`${serverUrl}/posts`, data);
+    const res = axios.get("/posts");
     return res;
-
-  } catch (error) {
-    return error;
+  } catch (err) {
+    return err
   }
 };
 
+export const createPost = async (data) => {
+  console.log("this is data", data);
 
-// export const getRecords = async () => {
-//   try {
-//     const data = await (await fetch(`${serverUrl}/records`)).json();
-//     return data;
-//   } catch (error) {
-//     return error;
-//   }
-// };
+  try {
+    const res = await axios.post(`/users/${data.authorId}/posts`, data);
+    return res;
+  } catch (err) {
+    return err;
+  }
+};
 
-// export const SignInUser = async (data) => {
-//   try {
-//     const res = await (
-//       await fetch(`${serverUrl}/users/login`, {
-//         method: 'POST',
-//         headers: { 'Content-Type': 'application/json' },
-//         body: JSON.stringify(data),
-//       })
-//     ).json();
-//     return res;
-//   } catch (error) {
-//     return error;
-//   }
-// };
+export const loginUser = async (data) => {
+  try {
+    const res = await axios.post("/users/login", data);
+    return res;
+  } catch (err) {
+    return err;
+  }
+};
 
-// export const SignUpUser = async (data) => {
-//   try {
-//     const res = await (
-//       await fetch(`${serverUrl}/users`, {
-//         method: 'POST',
-//         headers: { 'Content-Type': 'application/json' },
-//         body: JSON.stringify(data),
-//       })
-//     ).json();
-//     return res;
-//   } catch (error) {
-//     return error;
-//   }
-// };
+export const registerUser = async (data) => {
+  try {
+    const res = await axios.post("/users/register", data);
+    return res;
+  } catch (err) {
+    return err;
+  }
+};
 
-// export const updateUser = async (data) => {
-//   try {
-//     const res = await (
-//       await fetch(`${serverUrl}/users/${data._id}`, {
-//         method: 'PUT',
-//         headers: { 'Content-Type': 'application/json' },
-//         body: JSON.stringify({ cart: data.cart }),
-//       })
-//     ).json();
-//     return res;
-//   } catch (error) {
-//     return error;
-//   }
-// };
+export const getSingleUserPosts = async (id) => {
+  try {
+    const res = await axios.get(`/users/${id}/posts`);
+    return res;
+  } catch (err) {
+    return err;
+  }
+};
 
+// TODO - not working yet
+export const getComments = async (id) => {
+  try {
+    const res = await axios.get(`/posts/${id}/comments`);
+    return res;
+  } catch (err) {
+    return err;
+  }
+};

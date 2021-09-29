@@ -3,6 +3,7 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import toast from 'react-hot-toast'; 
+import { registerUser } from "../helpers/apiCalls"; 
 
 
 const Register = () => {
@@ -16,11 +17,11 @@ const Register = () => {
 
   const onSubmit = async (data) => {
     try {
-      const res = await axios.post("/addUser", data);
-    //   console.log("res data", res.data);
+      const res = await registerUser(data);
       history.push("/login");
+      toast("Wonderful. Please logg in now");
     } catch (error) {
-      toast("login has failed");
+      toast("Register has failed");
     }
   };
 
@@ -39,7 +40,7 @@ const Register = () => {
         <input type='password' placeholder="Password" {...register("password", { required: true })} />
         {errors.password && <span>Password is required</span>}
 
-        <input placeholder="Avatar Url" {...register("avatar")} />
+        <input placeholder="Optional Avatar Url" {...register("avatar")} />
         
 
         <input type="submit" />

@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import axios from "axios";
+import { getPosts } from "../helpers/apiCalls";
 
 export const PostsContext = createContext();
 
@@ -10,20 +11,16 @@ function PostsProvider({ children }) {
   useEffect(() => {
     try {
       const fetchPosts = async () => {
-        // const res = await axios.get("/posts");
-        const res = await axios.get(
-          "http://localhost:5000/posts"
-        );
+        const res = await getPosts()
         setPosts(res.data);
       };
       fetchPosts();
-    } catch (error) {
-      console.log(error.message);
+    } catch (err) {
+      console.log(err.message);
     }
   }, []);
 
 
- console.log(posts);
 
   // const addPost = (postNew) => {
   //   setPosts([...posts, postNew]);

@@ -16,35 +16,37 @@ const Write = () => {
     register,
     formState: { errors },
     handleSubmit,
+    reset
   } = useForm();
 
   const onSubmit = async (data) => {
     const helperData = { ...data, authorId: user._id };
     const res = await createPost(helperData);
-    console.log(res)
+    console.log('this is res ', res)
 
-    // if (!res.error) {
-    //   setPosts([...posts, helperData]);
-    //   toast("Post created successfully!", {
-    //     duration: 4000,
-    //     position: "top-right",
-    //     style: {
-    //       color: "black",
-    //       background: "rgba(27, 95, 86, 0.842)",
-    //     },
-    //   });
-    // } else {
+    if (!res.error) {
+      setPosts([...posts, res.data]);
+      toast("Post created successfully!", {
+        duration: 4000,
+        position: "top-right",
+        style: {
+          color: "black",
+          background: "rgba(27, 95, 86, 0.842)",
+        },
+      });
+      reset();
+    } else {
 
-    //     // todo handle error
+        // todo handle error
 
-    //     toast( 'something went wrong', {
-    //         duration: 4000,
-    //         position: "top-right",
-    //         style: {
-    //           color: "black",
-    //         },
-    //       });
-    // }
+        toast( 'something went wrong', {
+            duration: 4000,
+            position: "top-right",
+            style: {
+              color: "black",
+            },
+          });
+    }
   };
 
 
