@@ -1,17 +1,19 @@
 import { body, validationResult } from "express-validator";
-import createHttpError from "http-errors";
+import createError from "http-errors";
 
 export const userValidationRules = () => {
   return [
     body('username')
       .isLength({ min: 3, max: 20 })
       .withMessage('Username must be between 3 and 20 characters')
-      .trim(),
+      .trim()
+      .escape(),
     body("email")
       .isEmail()
       .withMessage("Email is invalid")
       .trim()
-      .normalizeEmail(),
+      .normalizeEmail()
+      .escape(),
     body("password")
       .isStrongPassword({
         minLength: 10,
@@ -23,7 +25,8 @@ export const userValidationRules = () => {
       })
       .withMessage(
         "Password must contain at least one lowercase letter, one uppercase letter, one number, and one symbol !@#^$%&*"
-      ),
+      )
+      .escape()
   ];
 };
 
@@ -34,7 +37,7 @@ export const userValidationErrorHandling = (req, res, next) => {
 
   const arrErrors = errors.array();
   const errorsSummary = mergeErrors(arrErrors);
-  const err = new createHttpError(422, errorsSummary);
+  const err = new createError(422, errorsSummary);
   next(err)
 };
 
