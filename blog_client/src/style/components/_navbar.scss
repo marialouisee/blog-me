@@ -13,4 +13,19 @@
         color: burlywood;
     }
     
+    .navbar-user {
+        display: flex;
+        align-items: center;
+        img {
+            height: 60px;
+            padding: 0 10px;
+        };
+        .navbar-user-link {
+            display: flex;
+            align-items: center;
+            
+
+        }
+    }
 }
+

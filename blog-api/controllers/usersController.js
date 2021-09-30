@@ -62,15 +62,15 @@ export const deleteUser = async (req, res, next) => {
 export const loginUser = async (req, res, next) => {
   const { username, password } = req.body;
   try {
-    const user = await User.findOne({ username }).populate("cart.record");
-    if (!user) throw new createError(404, `Email not valid`);
+    const user = await User.findOne({ username });
+    if (!user) throw new createError(404, `Username not valid`);
 
     const isPasswordValid = bcrypt.compareSync(password, user.password);
     if (!isPasswordValid) throw new createError(401, `Password not valid`);
 
     user.password = undefined;
     
-    const token = jwt.sign({ id: user._id }, config.secretKey, { expiresIn: '1d' });
+    const token = user.generateAuthToken() //jwt.sign({ id: user._id }, config.secretKey, { expiresIn: '1d' });
 
     const cookieOptions = {
       httpOnly: true,
@@ -84,3 +84,7 @@ export const loginUser = async (req, res, next) => {
     next(err);
   }
 };
+
+export const authUser = async (req, res) => {
+  res.send(req.user);
+}

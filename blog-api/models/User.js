@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 const { Schema, model } = mongoose;
 import jwt from 'jsonwebtoken';
+import config from '../config/config.js'
 
 const UserSchema = new Schema(
   {
@@ -52,18 +53,27 @@ const UserSchema = new Schema(
 );
 
 
-
 // is user?
 UserSchema.statics.findByToken =  function (token) {
+  // console.log(token)
   const User = this;
   try {
-    let decoded = jwt.verify(token, config.secretKey); // will return the payload : { _id: user._id }
+    let decoded = jwt.verify(token, config.secretKey);
+    // console.log(decoded)
+    // will return the payload : { _id: user._id }
     let user = User.findOne({ _id: decoded._id });
     return user;
   } catch (error) {
     return;
   }
 }
+
+UserSchema.methods.generateAuthToken = function () {
+  const user = this;
+  const token = jwt.sign({ _id: user._id }, config.secretKey , {expiresIn: '2d'});
+  console.log('this is the token', token)
+  return token;
+};
 
 const User = model("User", UserSchema);
 

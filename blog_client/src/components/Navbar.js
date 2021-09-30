@@ -5,7 +5,7 @@ import { UserContext } from '../context/UserProvider'
 const Navbar = () => {
 
 const {user} = useContext(UserContext)
-// console.log(user)
+// console.log('navbar user', user)
 
 // todo login/logout when user ready
     return (
@@ -14,12 +14,9 @@ const {user} = useContext(UserContext)
                 <NavLink activeClassName='active' to="/">Home</NavLink>
                 <NavLink activeClassName='active' to="/posts">Posts</NavLink>
             </div>
-            <div> 
-                <NavLink activeClassName='active' to={`/users/${user._id}/write`}>Create</NavLink>
-            </div>
 
             <div className='navbar-user'>
-                {user? <NavLink activeClassName='active' to={`/users/${user._id}`}><img src={user.avatar} alt="" /> {user.username}</NavLink> : <> <NavLink activeClassName='active' to="/login">Login</NavLink> 
+                {user? <> <NavLink activeClassName='active' to={`/users/${user?._id}/write`}>Create</NavLink>  <NavLink className='navbar-user-link' activeClassName='active' to={`/users/${user._id}`}><img src={user.avatar} alt="" /> {user.username}</NavLink> </> : <> <NavLink activeClassName='active' to="/login">Login</NavLink> 
                 <NavLink activeClassName='active' to="/register">Register</NavLink></> }
             </div>
         </div>

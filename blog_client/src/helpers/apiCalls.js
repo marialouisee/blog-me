@@ -59,3 +59,14 @@ export const getComments = async (id) => {
     return err;
   }
 };
+
+
+export const authCheck = async () => {
+  try {
+    const res = await axios.post("/users/auth");
+    console.log("res authCheck", res)
+    return res;
+  } catch (err) {
+    return err;
+  }
+}

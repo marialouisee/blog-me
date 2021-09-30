@@ -2,19 +2,20 @@ import express from 'express';
 const router = express.Router();
 
 import {
-  getUser, // protect, user
-  getUsers, // protect, admin
+  getUser, 
+  getUsers, 
   addUser, 
-  updateUser, // protect, user/admin
-  deleteUser, // protect, user/admin
-  loginUser
+  updateUser, 
+  deleteUser, 
+  loginUser,
+  authUser
 } from '../controllers/usersController.js';
 
 import {
   getSingleUserPosts,
-  createPost, // protect, user
-  deletePost, // protect, user
-  updatePost, // protect, user
+  createPost, 
+  deletePost, 
+  updatePost, 
 } from '../controllers/postsController.js';
 
 import {
@@ -22,16 +23,21 @@ import {
   userValidationErrorHandling
 } from '../validation/userValidation.js'
 
-router.route("/").get(getUsers);
+import auth from '../middleware/authentication/authentication.js'
+
+router.route("/").get( getUsers);
+
 router.route("/register").post(
   userValidationRules(), // Validate user input
   userValidationErrorHandling, // this is a middleware
   addUser
 );
 router.route("/login").post(loginUser);
-router.route("/:id").get(getUser).put(updateUser).delete(deleteUser);
+router.route('/auth').post(auth, authUser)
 
-router.route("/:id/posts").get(getSingleUserPosts).post(createPost);
-router.route("/:id/posts/:postId").delete(deletePost).put(updatePost);
+router.route("/:id").get( getUser).put( updateUser).delete( deleteUser);
+
+router.route("/:id/posts").get( getSingleUserPosts).post( createPost);
+router.route("/:id/posts/:postId").delete( deletePost).put( updatePost);
 
 export default router;

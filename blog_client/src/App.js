@@ -15,18 +15,18 @@ import  { Toaster } from 'react-hot-toast';
 
 function App() {
   const { user } = useContext(UserContext);
-  console.log('this is user',user)
+  // console.log('this is user',user)
 
   return (
     <div className="App">
       <Navbar />
       <Switch>
-        <Route path="/register" component={Register} />
-        <Route path="/login" component={user? null : Login}/>
+        <Route path="/register" component={user? null : Register} />
+        <Route path="/login" component={user ? null : Login} />
         <Route exact path="/posts/:id" component={PostView} />
         <Route exact path="/posts" component={PostList} />
-        <Route path="/users/:id/write" component={user? Write : Login}/>
-        <Route path="/users/:id" component={user? User : null }/>
+        <Route path="/users/:id/write" component={Write} />
+        <Route path="/users/:id" component={user ? User : null} />
         <Route exact path="/" component={Home} />
       </Switch>
       <Toaster />

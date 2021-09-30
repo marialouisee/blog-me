@@ -15,14 +15,14 @@ const seed = async () => {
     // INSERT 2 USERS
     const users = await User.insertMany([
       {
-        username: faker.internet.userName(),
-        password: "12345",
-        email: faker.internet.email()
+        username: 'user1',
+        password: "$2a$10$oKYnJDcvcQqEad9G3pTy7.On7VPfPaUZXDx.k8oQDAz.8JbV.oZeW",
+        email: "user1@email.de"
       },
       {
-        username: faker.internet.userName(),
-        password: "12345",
-        email: faker.internet.email()
+        username: "user2",
+        password: "$2a$10$oKYnJDcvcQqEad9G3pTy7.On7VPfPaUZXDx.k8oQDAz.8JbV.oZeW",
+        email: "user2@email.de"
       }
     ]);
 

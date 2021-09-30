@@ -1,12 +1,14 @@
-import React from "react";
+import React , {useContext} from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import toast from 'react-hot-toast';
 import {loginUser} from '../helpers/apiCalls' 
+import { UserContext } from "../context/UserProvider";
 
 const Login = () => {
   const history = useHistory();
+  const { setUser } = useContext(UserContext);
 
   const {
     register,
@@ -20,6 +22,7 @@ const Login = () => {
       const res = await loginUser(data);
       console.log("res data", res.data);
       history.push(`/users/${res.data._id}`);
+      setUser(res.data);
       toast("you are logged in");
 
       // TODO set user 
