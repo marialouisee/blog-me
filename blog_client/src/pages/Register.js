@@ -43,7 +43,7 @@ const Register = () => {
         <input placeholder="Optional Avatar Url" {...register("avatar")} />
         
 
-        <input type="submit" />
+        <input className='submit' type="submit" />
       </form>
     </div>
   );

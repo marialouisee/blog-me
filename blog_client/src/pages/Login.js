@@ -44,7 +44,7 @@ const Login = () => {
         <input placeholder='Password' type='password' {...register("password", { required: true })} />
         {errors.password && <span>Password is required</span>}
 
-        <input type="submit" />
+        <input className="submit" type="submit" />
       </form>
     </div>
   );

@@ -15,14 +15,19 @@ const PostView = ({ location }) => {
   useEffect(() => {
     const fetchComments = async () => {
       const res = await getComments(post._id)
-      console.log(res)
+      console.log(res.data)
       setComments(res.data);
     };
-    fetchComments();
-  });
+     fetchComments();
+  }, []);
+
+  console.log(comments)
 
   return (
     <div className="post-view">
+      <div className="post-image">
+        <img alt="" src={post.imageUrl} onError={(e)=> {return (e.target.parentNode.style.dispay = 'none')}} />
+      </div>
       <div className="post-details">
         <h2>{post.title}</h2>
         <div className="post-author">By: {post.authorId.username}</div>
@@ -41,11 +46,11 @@ const PostView = ({ location }) => {
           </span>
         </div>
       )}
-      {/* <div className="comments-count">{comments.length} Comments</div> */}
+      <div className="comments-count">{comments.length} Comments</div>
       <div className="comments">
-        {/* {comments.map((comment, i) => (
+        {comments.map((comment, i) => (
           <Comment key={comment._id} comment={comment} index={i} />
-        ))} */}
+        ))}
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 import Post from "../models/Post.js";
 import createError from "http-errors";
-// import Comment from "../models/Comment.js";
+import Comment from "../models/Comment.js";
 
 //# POST ROUTE
 
@@ -9,6 +9,19 @@ export const getPosts = async (req, res, next) => {
   try {
     const posts = await Post.find().populate({ path: "authorId", select: "username" }); //just populate username for frontend
     res.json(posts);
+  } catch (error) {
+    next(error);
+  }
+};
+
+
+//GET /:id/comments
+export const getCommentsByPostId = async (req, res, next) => {
+  const { id } = req.params;
+  try {
+
+    const comments = await Comment.find({ postId: id }).populate({ path: "author", select: "username" });
+    res.json(comments);
   } catch (error) {
     next(error);
   }
@@ -65,18 +78,5 @@ export const deletePost = async (req, res, next) => {
     next(error);
   }
 };
-
-// GET /:id/comments
-// export const getCommentsByPostId = async (req, res, next) => {
-//   const { id } = req.params;
-//   try {
-//     //! find in in Comment model
-//     const comments = await Comment.find({ postId: id });
-//     res.json(comments);
-//   } catch (error) {
-//     next(error);
-//   }
-// };
-
 
 

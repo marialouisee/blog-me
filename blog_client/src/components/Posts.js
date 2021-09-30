@@ -8,6 +8,7 @@ const Posts = ({ post, index = 0 }) => {
     pathname: `/posts/${post._id}`,
     state: post 
   } 
+  console.log(post)
 
   return (
     <div key={post._id} className="post-card">

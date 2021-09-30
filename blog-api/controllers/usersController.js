@@ -86,5 +86,7 @@ export const loginUser = async (req, res, next) => {
 };
 
 export const authUser = async (req, res) => {
-  res.send(req.user);
+  let user = req.user;
+  user.password = undefined;
+  res.send(user);
 }

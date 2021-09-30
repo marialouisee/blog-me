@@ -2,12 +2,17 @@
 
 .home-bg {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-end;
+    align-items: flex-end;
     flex-direction: column ;
-    background-image: url('../../images/concrete.jpeg');
     height: calc(100vh - 70px);
     font-size: 100px;
     font-family: 'Permanent Marker', Arial, Helvetica, sans-serif;
     color: $green-prim-opac;
+    background-size: cover;
+    background-position: center;
+    h6 {
+        margin: 30px;
+        @include borders
+    }
 }

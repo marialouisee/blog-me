@@ -1,10 +1,24 @@
-import React from 'react'
+import React, {useContext, useEffect, useState } from 'react'
+import { UserContext } from "../context/UserProvider";
+import banana from '../images/pexels-banana.png'
+import bananaDive from '../images/pexels-banana-dive.png'
 
 const Home = () => {
+  const { user } = useContext(UserContext);
+  const [ backgroundImage, setBackgroundImage ] = useState(banana);
+
+  useEffect(() => {
+    if (user) {
+      setBackgroundImage(bananaDive);
+    } else {
+      setBackgroundImage(banana);
+    }
+  })
+
   return (
-    <div className='home-bg'>
-      <h1>Welcome</h1>
-      <h6>to Blog-Me-If-You-Can</h6>
+    <div className='home-bg' style={ {backgroundImage : `url(${backgroundImage})`} }>
+   
+      <h6>Blog-Me-If-You-Can</h6>
     </div>
   )
 }

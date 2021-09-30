@@ -3,3 +3,21 @@
 // @mixin name {
 //   // your rules
 // }
+
+@mixin borders {
+    border-bottom: 1px solid $green-prim-opac;
+    border-top: 1px solid $green-prim-opac;
+    border-left: none;
+    border-right: none;
+}
+
+@mixin button {
+    font-family: 'Karla', sans-serif;
+    padding: 10px 15px;
+    background-color: $green-prim-opac;
+    color: white;
+    font-weight: bold;
+    @include borders 
+
+    
+}

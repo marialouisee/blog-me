@@ -10,14 +10,14 @@
         color: black;
     }
     .active {
-        color: burlywood;
+        color: $yellow-prim;
     }
     
     .navbar-user {
         display: flex;
         align-items: center;
         img {
-            height: 60px;
+            height: 50px;
             padding: 0 10px;
         };
         .navbar-user-link {
