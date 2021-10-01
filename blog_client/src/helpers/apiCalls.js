@@ -50,7 +50,6 @@ export const getSingleUserPosts = async (id) => {
   }
 };
 
-// TODO - not working yet
 export const getComments = async (id) => {
   try {
     const res = await axios.get(`/posts/${id}/comments`);
@@ -65,6 +64,15 @@ export const authCheck = async () => {
   try {
     const res = await axios.post("/users/auth");
     console.log("res authCheck", res)
+    return res;
+  } catch (err) {
+    return err;
+  }
+}
+
+export const logoutUser = async () => {
+  try {
+    const res = await axios.post("/users/logout");
     return res;
   } catch (err) {
     return err;

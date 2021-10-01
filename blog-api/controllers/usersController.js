@@ -85,6 +85,10 @@ export const loginUser = async (req, res, next) => {
   }
 };
 
+export const logoutUser = async (req, res, next) => {
+  res.clearCookie("token").send();
+}
+
 export const authUser = async (req, res) => {
   let user = req.user;
   user.password = undefined;

@@ -75,6 +75,14 @@ UserSchema.methods.generateAuthToken = function () {
   return token;
 };
 
+UserSchema.methods.deleteToken = function (token) {
+  const user = this;
+  user.tokens = user.tokens.filter((t) => {
+    return t.token !== token;
+  });
+  return user.save();
+};
+
 const User = model("User", UserSchema);
 
 export default User;

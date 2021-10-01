@@ -8,6 +8,7 @@ import {
   updateUser, 
   deleteUser, 
   loginUser,
+  logoutUser,
   authUser
 } from '../controllers/usersController.js';
 
@@ -33,11 +34,13 @@ router.route("/register").post(
   addUser
 );
 router.route("/login").post(loginUser);
+router.route("/logout").post(logoutUser);
+
 router.route('/auth').post(auth, authUser)
 
-router.route("/:id").get( getUser).put( updateUser).delete( deleteUser);
+router.route("/:id").get(auth, getUser).put(auth, updateUser).delete(auth, deleteUser);
 
-router.route("/:id/posts").get( getSingleUserPosts).post( createPost);
-router.route("/:id/posts/:postId").delete( deletePost).put( updatePost);
+router.route("/:id/posts").get(auth, getSingleUserPosts).post(auth, createPost);
+router.route("/:id/posts/:postId").delete(auth, deletePost).put(auth, updatePost);
 
 export default router;
