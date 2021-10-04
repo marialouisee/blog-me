@@ -25,12 +25,14 @@ import {
 } from '../validation/userValidation.js'
 
 import auth from '../middleware/authentication/authentication.js'
+import cloudinaryUpload from '../middleware/cloudinary.js'
 
 router.route("/").get( getUsers);
 
 router.route("/register").post(
   userValidationRules(), // Validate user input
   userValidationErrorHandling, // this is a middleware
+  cloudinaryUpload,
   addUser
 );
 router.route("/login").post(loginUser);

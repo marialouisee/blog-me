@@ -1,7 +1,6 @@
 import User from '../models/User.js';
 import createError from 'http-errors';
 import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
 import config from '../config/config.js'
 
 export const getUsers = async (req, res, next) => {
@@ -21,6 +20,9 @@ export const addUser = async (req, res, next) => {
     await user.save();
     user.password = undefined;
     res.send(user);
+
+    // console.log('add user body', body)
+    // res.json(body)
   } catch (err) {
     next(err);
   }

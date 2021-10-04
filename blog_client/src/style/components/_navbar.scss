@@ -19,12 +19,15 @@
         img {
             height: 50px;
             padding: 0 10px;
+            
         };
         .navbar-user-link {
             display: flex;
             align-items: center;
-            
-
+            img {
+                border-radius: 50%;
+                height: 50px;
+            }
         }
     }
 }
