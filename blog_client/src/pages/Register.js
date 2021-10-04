@@ -56,7 +56,7 @@ const Register = () => {
         {errors.password && <span>Password is required</span>}
 
         <input type='file' name="avatar" accept="image/png, image/jpeg, image/jpg" {...register("avatar")} />
-        
+        {errors.avatar && <span>File size max 1MB</span>}
 
         <input className='submit' type="submit" />
       </form>
