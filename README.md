@@ -56,7 +56,7 @@ This is a fun blog project I am working on.
 
 Still loads of work to do :)
 
-Frondtend: React App, SASS
+Frondtend - React App, SASS
 
 API - Full CRUD, Express, Mongoose
 
