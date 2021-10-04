@@ -1,5 +1,4 @@
 import React from 'react'
-import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import toast from 'react-hot-toast'; 
@@ -17,6 +16,13 @@ const Register = () => {
 
   const onSubmit = async (data) => {
     try {
+      const file = data.avatar[0]
+      console.log(file)
+      const convertedB64 = await convertBase64(file)
+      console.log('convertedB64', convertedB64)
+      data.avatar = convertedB64
+      console.log('data.avatar', data.avatar)
+
       const res = await registerUser(data);
       history.push("/login");
       toast("Wonderful. Please logg in now");
@@ -24,6 +30,15 @@ const Register = () => {
       toast("Register has failed");
     }
   };
+
+  const convertBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = (error) => reject(error);
+  });
+  }
 
   return (
     <div className='page-wrapper'>
@@ -40,7 +55,7 @@ const Register = () => {
         <input type='password' placeholder="Password" {...register("password", { required: true })} />
         {errors.password && <span>Password is required</span>}
 
-        <input placeholder="Optional Avatar Url" {...register("avatar")} />
+        <input type='file' name="avatar" accept="image/png, image/jpeg, image/jpg" {...register("avatar")} />
         
 
         <input className='submit' type="submit" />

@@ -23,7 +23,10 @@ const config = {
     env: env.NODE_ENV || 'development',
     frontendOrigin: env.FRONTEND_ORIGIN_DEV || env.FRONTEND_ORIGIN_PROD,
     secretKey: env.SECRET_KEY_DEV || env.SECRET_KEY_PROD,
-    mongooseUrl: env.MONGOOSE_DB_DEV || env.MONGOOSE_DB_PROD
+    mongooseUrl: env.MONGOOSE_DB_DEV || env.MONGOOSE_DB_PROD,
+    cloud_name: process.env.CLOUDINARY_NAME,
+    cloud_api_key: process.env.CLOUDINARY_API_KEY,
+    cloud_api_secret: process.env.CLOUDINARY_API_SECRET,
 }
 
 console.log(config.env)
