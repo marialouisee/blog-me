@@ -8,6 +8,7 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Write from "./pages/Write";
 import User from "./pages/User";
+import PrivateRoute from './components/PrivateRoute';
 import { UserContext } from "./context/UserProvider";
 import './style/main.scss';
 import  { Toaster } from 'react-hot-toast';
@@ -21,12 +22,12 @@ function App() {
     <div className="App">
       <Navbar />
       <Switch>
-        <Route path="/register" component={user? null : Register} />
-        <Route path="/login" component={user ? null : Login} />
+        <Route exact path="/register" component={user? null : Register} />
+        <Route exact path="/login" component={user ? null : Login} />
         <Route exact path="/posts/:id" component={PostView} />
         <Route exact path="/posts" component={PostList} />
-        <Route path="/users/:id/write" component={Write} />
-        <Route path="/users/:id" component={user ? User : null} />
+        <PrivateRoute exact path="/users/:id/write" component={Write} />
+        <PrivateRoute exact path="/users/:id" component={user ? User : null} />
         <Route exact path="/" component={Home} />
       </Switch>
       <Toaster />
