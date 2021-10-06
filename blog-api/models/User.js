@@ -34,7 +34,7 @@ const UserSchema = new Schema(
       },
     },
     password: { type: String, required: [true, "password is required"] },
-    avatar: {
+    image: {
       type: String,
       default: "https://upload.wikimedia.org/wikipedia/en/f/fb/Yellow_icon.svg",
     },

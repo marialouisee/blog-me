@@ -3,6 +3,7 @@ import createError from 'http-errors';
 import bcrypt from 'bcryptjs';
 import config from '../config/config.js'
 
+
 export const getUsers = async (req, res, next) => {
   try {
     let users = await User.find().sort('lastName').select('-password');

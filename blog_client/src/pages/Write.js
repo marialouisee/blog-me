@@ -20,35 +20,42 @@ const Write = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    const helperData = { ...data, authorId: user._id };
-    const res = await createPost(helperData);
-    console.log('this is res ', res)
+    try {
+      const file = data.image[0]
+      const convertedB64 = await convertBase64(file)
+      data.image = convertedB64
 
-    if (!res.error) {
-      setPosts([...posts, res.data]);
-      toast("Post created successfully!", {
-        duration: 4000,
-        position: "top-right",
-        style: {
-          color: "black",
-          background: "rgba(27, 95, 86, 0.842)",
-        },
-      });
-      reset();
-    } else {
+      const helperData = { ...data, authorId: user._id };
+      console.log('helperData', helperData)
 
-        // todo handle error
+      const res = await createPost(helperData);
+      console.log("this is res ", res);
 
-        toast( 'something went wrong', {
-            duration: 4000,
-            position: "top-right",
-            style: {
-              color: "black",
-            },
-          });
+      if (!res.error) {
+        setPosts([...posts, res.data]);
+
+        toast("Post created successfully!");
+        
+        reset();
+
+      } else {
+
+        toast("something went wrong");
+      }
+    } catch (err) {
+      console.log(err)
+      toast(`${err.message}`)
     }
   };
 
+  const convertBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = (error) => reject(error);
+  });
+  }
 
   return (
     <div className="page-wrapper">
@@ -81,14 +88,8 @@ const Write = () => {
         />
         {errors.text && "Text is required"}
 
-        <input
-          className="write-title"
-          placeholder="Image URL"
-          {...register("imageUrl", {
-            required: true
-          })}
-        />
-        {errors.title?.type === "required" && "Title is required"}
+        <input type='file' name="image" accept="image/png, image/jpeg, image/jpg" {...register("image")} />
+        {errors.image && <span>File size max 1MB</span>}
 
         <input className='write-submit' type="submit" />
 

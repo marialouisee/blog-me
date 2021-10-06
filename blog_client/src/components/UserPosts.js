@@ -7,7 +7,7 @@ const Posts = ({ post }) => {
       <div className="user-post-image">
         <img
           alt=""
-          src={post.imageUrl}
+          src={post.image}
           onError={(e) => {
             return (e.target.parentNode.style.dispay = "none");
           }}

@@ -15,7 +15,7 @@ const PostSchema = new Schema(
   {
     title: { type: String, required: [true, 'Title is required'] },
     text: { type: String, required: [true, 'Text is required'] },
-    imageUrl: { type: String, required: [true, 'Image URL is required'] },
+    image: { type: String },
     authorId: { type: Schema.Types.ObjectId, ref: "User", required: true },
     stats: { type: StatsSchema },
   },

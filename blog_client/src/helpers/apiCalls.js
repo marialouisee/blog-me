@@ -17,9 +17,10 @@ export const createPost = async (data) => {
 
   try {
     const res = await axios.post(`/users/${data.authorId}/posts`, data);
+    console.log('res in create post')
     return res;
   } catch (err) {
-    return err;
+    return err
   }
 };
 

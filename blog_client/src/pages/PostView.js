@@ -26,7 +26,7 @@ const PostView = ({ location }) => {
   return (
     <div className="post-view">
       <div className="post-image">
-        <img alt="" src={post.imageUrl} onError={(e)=> {return (e.target.parentNode.style.dispay = 'none')}} />
+        <img alt="" src={post.image} onError={(e)=> {return (e.target.parentNode.style.dispay = 'none')}} />
       </div>
       <div className="post-details">
         <h2>{post.title}</h2>

@@ -1,5 +1,6 @@
 import config from '../config/config.js'
 import cloudinary from 'cloudinary'
+import createError from "http-errors"
 
 cloudinary.config({
     cloud_name: config.cloud_name,
@@ -9,10 +10,13 @@ cloudinary.config({
 
  const cloudinaryUpload = async (req, res, next) => {
     try {
-        const fileStr = req.body.avatar
+        const fileStr = req.body.image
         const uploadRes = await cloudinary.uploader.upload(fileStr, {})
-        console.log(uploadRes)
-        req.body.avatar = uploadRes.url
+
+        if(!uploadRes) throw new createError('upload failed')
+        
+        // console.log(uploadRes)
+        req.body.image = uploadRes.url
         next()
         
     } catch (err) {

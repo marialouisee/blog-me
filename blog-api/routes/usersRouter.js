@@ -42,7 +42,7 @@ router.route('/auth').post(auth, authUser)
 
 router.route("/:id").get(auth, getUser).put(auth, updateUser).delete(auth, deleteUser);
 
-router.route("/:id/posts").get(auth, getSingleUserPosts).post(auth, createPost);
+router.route("/:id/posts").get(auth, getSingleUserPosts).post(auth, cloudinaryUpload, createPost);
 router.route("/:id/posts/:postId").delete(auth, deletePost).put(auth, updatePost);
 
 export default router;

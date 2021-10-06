@@ -16,12 +16,12 @@ const Register = () => {
 
   const onSubmit = async (data) => {
     try {
-      const file = data.avatar[0]
-      console.log(file)
+      const file = data.image[0]
+      // console.log(file)
       const convertedB64 = await convertBase64(file)
-      console.log('convertedB64', convertedB64)
-      data.avatar = convertedB64
-      console.log('data.avatar', data.avatar)
+      // console.log('convertedB64', convertedB64)
+      data.image = convertedB64
+      // console.log('data.image', data.image)
 
       const res = await registerUser(data);
       history.push("/login");
@@ -55,8 +55,8 @@ const Register = () => {
         <input type='password' placeholder="Password" {...register("password", { required: true })} />
         {errors.password && <span>Password is required</span>}
 
-        <input type='file' name="avatar" accept="image/png, image/jpeg, image/jpg" {...register("avatar")} />
-        {errors.avatar && <span>File size max 1MB</span>}
+        <input type='file' name="image" accept="image/png, image/jpeg, image/jpg" {...register("image")} />
+        {errors.image && <span>File size max 1MB</span>}
 
         <input className='submit' type="submit" />
       </form>
