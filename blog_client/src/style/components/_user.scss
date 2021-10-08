@@ -4,8 +4,16 @@
 }
 .user-info {
     width: 30vw;
-    height: 100vh;
-    margin: 180px 40px 40px 40px;
+    height: max-content;
+    margin: 130px 40px 40px 40px;
     padding: 40px;
     background-color: $yellow-prim;
+    position: sticky;
+    top: 130px;
+    div{
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+        flex-wrap: wrap;
+    }
 }

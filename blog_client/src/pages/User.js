@@ -33,7 +33,7 @@ const User = () => {
 
         }) }
       </div>
-      <UserInfo />
+      <UserInfo user={user}/>
     </div>
   );
 };
