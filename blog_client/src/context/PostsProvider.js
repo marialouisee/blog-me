@@ -20,27 +20,9 @@ function PostsProvider({ children }) {
   }, []);
 
 
-
-  const addPost = (postNew) => {
-    setPosts([...posts, postNew]);
-  };
-  const updatePost = (postUpdated) => {
-    setPosts(
-      posts.map((post) =>
-        post._id === postUpdated._id ? { ...postUpdated } : post
-      )
-    );
-  };
-  const deletePost = (postToDelete) => {
-    setPosts(posts.filter((post) => post._id !== postToDelete._id));
-  };
-
   const sharedData = {
     posts,
-    setPosts,
-    addPost,
-    updatePost,
-    deletePost
+    setPosts
   };
 
   return (
