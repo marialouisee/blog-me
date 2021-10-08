@@ -1,14 +1,14 @@
 import React , { useContext }from "react";
 import { useForm } from "react-hook-form";
 import { createPost } from "../helpers/apiCalls";
-import { UserContext } from "../context/UserProvider";
 import { PostsContext } from "../context/PostsProvider";
 // import { ToastContainer, toast } from 'react-toastify';
 import toast from 'react-hot-toast';
+import { useParams } from 'react-router-dom'
 
 
 const Write = () => {
-  const { user } = useContext(UserContext);
+  const { id } = useParams();
   const { posts, setPosts } = useContext(PostsContext);
   // console.log(user)
 
@@ -20,7 +20,7 @@ const Write = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    const helperData = { ...data, authorId: user._id };
+    const helperData = { ...data, authorId: id };
     const res = await createPost(helperData);
     console.log('this is res ', res)
 

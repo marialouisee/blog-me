@@ -56,10 +56,10 @@ export const createPost = async (req, res, next) => {
 };
 
 export const updatePost = async (req, res, next) => {
-  const { id } = req.params;
+  const { postId } = req.params;
   const body = req.body;
   try {
-    const postUpdated = await Post.findByIdAndUpdate(id, body, {
+    const postUpdated = await Post.findByIdAndUpdate(postId, body, {
       new: true,
     });
     if (!postUpdated) throw new createError(404, "Post not found");
@@ -70,9 +70,10 @@ export const updatePost = async (req, res, next) => {
 };
 
 export const deletePost = async (req, res, next) => {
-  const { id } = req.params;
+  const { postId } = req.params;
   try {
-    const postDeleted = await Post.findByIdAndDelete(id);
+    const postDeleted = await Post.findByIdAndDelete(postId);
+    if (!postDeleted) throw new createError(404, "Post not found");
     res.json(postDeleted);
   } catch (error) {
     next(error);
