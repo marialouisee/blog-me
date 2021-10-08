@@ -23,7 +23,7 @@ const Register = () => {
       data.avatar = convertedB64
       console.log('data.avatar', data.avatar)
 
-      const res = await registerUser(data);
+      await registerUser(data);
       history.push("/login");
       toast("Wonderful. Please logg in now");
     } catch (error) {
@@ -55,6 +55,7 @@ const Register = () => {
         <input type='password' placeholder="Password" {...register("password", { required: true })} />
         {errors.password && <span>Password is required</span>}
 
+        {/* needs a custom fil upload button */}
         <input type='file' name="avatar" accept="image/png, image/jpeg, image/jpg" {...register("avatar")} />
         {errors.avatar && <span>File size max 1MB</span>}
 

@@ -13,7 +13,7 @@ const Navbar = () => {
           Home
         </NavLink>
         <NavLink activeClassName="active" to="/posts">
-          Posts
+          All Posts
         </NavLink>
       </div>
 

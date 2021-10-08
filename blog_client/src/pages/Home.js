@@ -13,7 +13,7 @@ const Home = () => {
     } else {
       setBackgroundImage(banana);
     }
-  })
+  },[user])
 
   return (
     <div className='home-bg' style={ {backgroundImage : `url(${backgroundImage})`} }>

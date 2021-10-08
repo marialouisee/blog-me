@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const Posts = ({ post, index = 0 }) => {
+const Posts = ({ post }) => {
 
   // this sends "like props" post state to PostView
   const postLinkData = {

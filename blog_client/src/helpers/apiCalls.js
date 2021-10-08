@@ -23,6 +23,31 @@ export const createPost = async (data) => {
   }
 };
 
+export const deletePost = async (userId, postId) => {
+  console.log("this is deletePost", userId, postId);
+
+  try {
+    const res = await axios.delete(`/users/${userId}/posts/${postId}`);
+    return res;
+  } catch (err) {
+    return err;
+  }
+};
+
+export const updatePost = async (userId, postId, data) => {
+  console.log(userId)
+  console.log(postId)
+  console.log(data)
+
+  try {
+    const res = await axios.put(`/users/${userId}/posts/${postId}`, data);
+    return res;
+  } catch (err) {
+    return err;
+  }
+};
+
+
 export const loginUser = async (data) => {
   try {
     const res = await axios.post("/users/login", data);

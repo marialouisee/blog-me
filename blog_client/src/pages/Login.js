@@ -1,5 +1,4 @@
 import React , {useContext} from "react";
-import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import toast from 'react-hot-toast';

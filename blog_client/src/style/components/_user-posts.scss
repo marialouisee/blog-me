@@ -7,4 +7,23 @@
     img {
         width: 100%;
     }
+    div {
+        margin-bottom: 10px
+    }
+    input, textarea {
+        padding: 10px;
+        @include borders;
+        width: 100%;
+        margin:  10px 0
+    }
+
+    
+    .user-post-button {
+        @include button;
+        margin-bottom: 10px;
+        margin-right: 5px
+    }
 }
+    
+
+
