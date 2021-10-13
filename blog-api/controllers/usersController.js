@@ -19,10 +19,18 @@ export const addUser = async (req, res, next) => {
     user.password = bcrypt.hashSync(user.password, 10);
     await user.save();
     user.password = undefined;
-    res.send(user);
 
-    // console.log('add user body', body)
-    // res.json(body)
+    const token = user.generateAuthToken() //jwt.sign({ id: user._id }, config.secretKey, { expiresIn: '1d' });
+
+    const cookieOptions = {
+      httpOnly: true,
+      expires: new Date(Date.now() + 172800000),
+      sameSite: config.env === "production" ? "none" : "lax",
+      secure: config.env === "production" ? true : false,
+    };
+
+    res.cookie("token", token, cookieOptions).send(user);
+
   } catch (err) {
     next(err);
   }
