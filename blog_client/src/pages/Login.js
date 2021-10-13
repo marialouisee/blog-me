@@ -20,11 +20,9 @@ const Login = () => {
     try {
       const res = await loginUser(data);
       console.log("res data", res.data);
-      history.push(`/users/${res.data._id}`);
+      history.push(`/`);
       setUser(res.data);
       toast("you are logged in");
-
-      // TODO set user 
       
     } catch (err) {
       reset()

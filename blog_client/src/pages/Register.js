@@ -1,12 +1,14 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import toast from 'react-hot-toast'; 
 import { registerUser } from "../helpers/apiCalls"; 
+import { UserContext } from "../context/UserProvider";
 
 
 const Register = () => {
   const history = useHistory();
+  const { setUser } = useContext(UserContext);
 
   const {
     register,
@@ -17,15 +19,17 @@ const Register = () => {
   const onSubmit = async (data) => {
     try {
       const file = data.avatar[0]
-      console.log(file)
+      // console.log(file)
       const convertedB64 = await convertBase64(file)
       // console.log('convertedB64', convertedB64)
       data.avatar = convertedB64
       // console.log('data.avatar', data.avatar)
 
-      await registerUser(data);
-      history.push("/login");
-      toast("Wonderful. Please logg in now");
+      const res = await registerUser(data);
+      history.push(`/`);
+      setUser(res.data);
+      toast("you are logged in");
+
     } catch (error) {
       toast("Register has failed");
     }
