@@ -19,9 +19,9 @@ const Register = () => {
       const file = data.avatar[0]
       console.log(file)
       const convertedB64 = await convertBase64(file)
-      console.log('convertedB64', convertedB64)
+      // console.log('convertedB64', convertedB64)
       data.avatar = convertedB64
-      console.log('data.avatar', data.avatar)
+      // console.log('data.avatar', data.avatar)
 
       await registerUser(data);
       history.push("/login");
