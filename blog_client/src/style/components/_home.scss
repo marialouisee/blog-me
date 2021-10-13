@@ -16,3 +16,17 @@
         @include borders
     }
 }
+
+
+.canvas {
+    font-family: 'Permanent Marker', Arial, Helvetica, sans-serif;
+    width: 100vw;
+    height: 100vh;
+    font-size: 16px;
+    margin: 0 auto;
+    // position: fixed;
+    color: rgb(43, 42, 42);
+    // background-color: rgb(201, 201, 201);
+    cursor: grab;
+   
+}
